@@ -55,27 +55,55 @@ export class TennisGame1 {
   }
 
   calculateScores() {
-    let tempScore = 0
+    const player1Score = this.calculateScoreForPlayer1()
+    const player2Score = this.calculateScoreForPlayer2()
+    return player1Score + player2Score
+  }
+
+  calculateScoreForPlayer2() {
     let score = ''
     for (let i = 1; i < 3; i++) {
-      if (i === 1) tempScore = this.m_score1
-      else {
+      if (i !== 1) {
         score += '-'
-        tempScore = this.m_score2
+        const tempScore = this.m_score2
+        switch (tempScore) {
+          case 0:
+            score += 'Love'
+            break
+          case 1:
+            score += 'Fifteen'
+            break
+          case 2:
+            score += 'Thirty'
+            break
+          case 3:
+            score += 'Forty'
+            break
+        }
       }
-      switch (tempScore) {
-        case 0:
-          score += 'Love'
-          break
-        case 1:
-          score += 'Fifteen'
-          break
-        case 2:
-          score += 'Thirty'
-          break
-        case 3:
-          score += 'Forty'
-          break
+    }
+    return score
+  }
+
+  calculateScoreForPlayer1() {
+    let score = ''
+    for (let i = 1; i < 3; i++) {
+      if (i === 1) {
+        const tempScore = this.m_score1
+        switch (tempScore) {
+          case 0:
+            score += 'Love'
+            break
+          case 1:
+            score += 'Fifteen'
+            break
+          case 2:
+            score += 'Thirty'
+            break
+          case 3:
+            score += 'Forty'
+            break
+        }
       }
     }
     return score
