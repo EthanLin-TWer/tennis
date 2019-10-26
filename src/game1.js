@@ -24,22 +24,16 @@ export class TennisGame1 {
   }
 
   calculateNormalScores() {
-    let score = ''
     switch (this.m_score1) {
       case 0:
-        score = 'Love-All'
-        break
+        return 'Love-All'
       case 1:
-        score = 'Fifteen-All'
-        break
+        return 'Fifteen-All'
       case 2:
-        score = 'Thirty-All'
-        break
+        return 'Thirty-All'
       default:
-        score = 'Deuce'
-        break
+        return 'Deuce'
     }
-    return score
   }
 
   calculateFinalScores() {
