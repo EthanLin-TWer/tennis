@@ -13,7 +13,6 @@ export class TennisGame1 {
 
   getScore() {
     let score = ''
-    let tempScore = 0
     if (this.m_score1 === this.m_score2) {
       switch (this.m_score1) {
         case 0:
@@ -36,6 +35,7 @@ export class TennisGame1 {
       else if (minusResult >= 2) score = 'Win for player1'
       else score = 'Win for player2'
     } else {
+      let tempScore = 0
       for (let i = 1; i < 3; i++) {
         if (i === 1) tempScore = this.m_score1
         else {
