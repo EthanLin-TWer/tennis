@@ -15,6 +15,18 @@ export class Player {
     this.#winnings = value
   }
 
+  hasSameScore(player) {
+    return this.#winnings === player.winnings
+  }
+
+  hasAdvantage(player) {
+    return this.#winnings >= 4 && this.#winnings - player.winnings === 1
+  }
+
+  wins(player) {
+    return this.#winnings >= 4 && this.#winnings - player.winnings !== 1
+  }
+
   getScore() {
     switch (this.#winnings) {
       case 0:

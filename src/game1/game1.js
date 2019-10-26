@@ -16,19 +16,37 @@ export class TennisGame1 {
   }
 
   getScore() {
-    if (this.isTwoPlayersScoreEqually()) {
+    if (this.player1.hasSameScore(this.player2)) {
       return this.reportEqualScores()
     }
 
-    if (this.isWinningPointForOnePlayer()) {
+    if (
+      this.player1.hasAdvantage(this.player2) ||
+      this.player2.hasAdvantage(this.player1)
+    ) {
       return this.reportWinningFrameScores()
+    }
+
+    if (this.player1.wins(this.player2) || this.player2.wins(this.player1)) {
+      return this.reportGameFinalScores()
     }
 
     return this.reportNormalScores()
   }
 
-  isTwoPlayersScoreEqually() {
-    return this.player1.winnings === this.player2.winnings
+  reportGameFinalScores() {
+    if (this.player1.winnings - this.player2.winnings >= 2) {
+      return 'Win for player1'
+    }
+    return 'Win for player2'
+  }
+
+  reportWinningFrameScores() {
+    if (this.player1.winnings - this.player2.winnings === 1) {
+      return 'Advantage player1'
+    }
+
+    return 'Advantage player2'
   }
 
   reportEqualScores() {
@@ -38,28 +56,6 @@ export class TennisGame1 {
 
     return `${this.player1.getScore()}-${Scores.ALL}`
   }
-
-  reportWinningFrameScores() {
-    const minusResult = this.player1.winnings - this.player2.winnings
-    if (minusResult === 1) {
-      return 'Advantage player1'
-    }
-
-    if (minusResult === -1) {
-      return 'Advantage player2'
-    }
-
-    if (minusResult >= 2) {
-      return 'Win for player1'
-    }
-
-    return 'Win for player2'
-  }
-
-  isWinningPointForOnePlayer() {
-    return this.player1.winnings >= 4 || this.player2.winnings >= 4
-  }
-
   reportNormalScores() {
     return `${this.player1.getScore()}-${this.player2.getScore()}`
   }
