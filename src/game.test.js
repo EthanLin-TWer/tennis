@@ -104,6 +104,7 @@ describe('TennisGame', () => {
       done() {
         if (this.errors > 0) {
           console.log(`Got ${this.errors} failure(s)!`)
+          throw new Error(`Got ${this.errors} failure(s)!`)
         } else {
           console.log('Done, all OK ')
         }
