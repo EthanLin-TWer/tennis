@@ -1,4 +1,5 @@
 import { Player } from './player'
+import { Scores } from './scores'
 
 export class TennisGame1 {
   constructor() {
@@ -31,11 +32,11 @@ export class TennisGame1 {
   }
 
   reportEqualScores() {
-    if (this.player1.getScore() === 'Forty') {
-      return 'Deuce'
+    if (this.player1.getScore() === Scores.FORTY) {
+      return Scores.DEUCE
     }
 
-    return `${this.player1.getScore()}-All`
+    return `${this.player1.getScore()}-${Scores.ALL}`
   }
 
   reportWinningFrameScores() {

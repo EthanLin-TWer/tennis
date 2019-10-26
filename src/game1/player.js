@@ -1,3 +1,5 @@
+import { Scores } from './scores'
+
 export class Player {
   #winnings
 
@@ -16,14 +18,14 @@ export class Player {
   getScore() {
     switch (this.#winnings) {
       case 0:
-        return 'Love'
+        return Scores.ZERO
       case 1:
-        return 'Fifteen'
+        return Scores.FIFTEEN
       case 2:
-        return 'Thirty'
+        return Scores.THIRTY
       case 3:
       default:
-        return 'Forty'
+        return Scores.FORTY
     }
   }
 }
