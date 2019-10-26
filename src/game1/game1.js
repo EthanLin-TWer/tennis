@@ -23,7 +23,7 @@ export class TennisGame1 {
       return this.reportWinningFrameScores()
     }
 
-    return this.calculateScores()
+    return this.reportNormalScores()
   }
 
   isTwoPlayersScoreEqually() {
@@ -64,24 +64,7 @@ export class TennisGame1 {
     return this.player1.score >= 4 || this.player2.score >= 4
   }
 
-  calculateScores() {
-    const player1Score = this.calculateScoreForPlayer(this.player1.score)
-    const player2Score = this.calculateScoreForPlayer(this.player2.score)
-    return `${player1Score}-${player2Score}`
-  }
-
-  calculateScoreForPlayer(score) {
-    switch (score) {
-      case 0:
-        return 'Love'
-      case 1:
-        return 'Fifteen'
-      case 2:
-        return 'Thirty'
-      case 3:
-        return 'Forty'
-      default:
-        return null
-    }
+  reportNormalScores() {
+    return `${this.player1.getScore()}-${this.player2.getScore()}`
   }
 }
