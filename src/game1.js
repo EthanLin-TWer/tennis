@@ -35,27 +35,33 @@ export class TennisGame1 {
       else if (minusResult >= 2) score = 'Win for player1'
       else score = 'Win for player2'
     } else {
-      let tempScore = 0
-      for (let i = 1; i < 3; i++) {
-        if (i === 1) tempScore = this.m_score1
-        else {
-          score += '-'
-          tempScore = this.m_score2
-        }
-        switch (tempScore) {
-          case 0:
-            score += 'Love'
-            break
-          case 1:
-            score += 'Fifteen'
-            break
-          case 2:
-            score += 'Thirty'
-            break
-          case 3:
-            score += 'Forty'
-            break
-        }
+      return this.calculateScores()
+    }
+    return score
+  }
+
+  calculateScores() {
+    let tempScore = 0
+    let score = ''
+    for (let i = 1; i < 3; i++) {
+      if (i === 1) tempScore = this.m_score1
+      else {
+        score += '-'
+        tempScore = this.m_score2
+      }
+      switch (tempScore) {
+        case 0:
+          score += 'Love'
+          break
+        case 1:
+          score += 'Fifteen'
+          break
+        case 2:
+          score += 'Thirty'
+          break
+        case 3:
+          score += 'Forty'
+          break
       }
     }
     return score
