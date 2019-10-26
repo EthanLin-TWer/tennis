@@ -1,14 +1,17 @@
+import { Player } from './player'
+
 export class TennisGame1 {
-  constructor(player1Name, player2Name) {
-    this.m_score1 = 0
-    this.m_score2 = 0
-    this.player1Name = player1Name
-    this.player2Name = player2Name
+  constructor() {
+    this.player1 = new Player()
+    this.player2 = new Player()
   }
 
   wonPoint(playerName) {
-    if (playerName === 'player1') this.m_score1 += 1
-    else this.m_score2 += 1
+    if (playerName === 'player1') {
+      this.player1.score += 1
+    } else {
+      this.player2.score += 1
+    }
   }
 
   getScore() {
@@ -24,11 +27,11 @@ export class TennisGame1 {
   }
 
   isTwoPlayersScoreEqually() {
-    return this.m_score1 === this.m_score2
+    return this.player1.score === this.player2.score
   }
 
   reportEqualScores() {
-    switch (this.m_score1) {
+    switch (this.player1.score) {
       case 0:
         return 'Love-All'
       case 1:
@@ -41,7 +44,7 @@ export class TennisGame1 {
   }
 
   reportWinningFrameScores() {
-    const minusResult = this.m_score1 - this.m_score2
+    const minusResult = this.player1.score - this.player2.score
     if (minusResult === 1) {
       return 'Advantage player1'
     }
@@ -58,12 +61,12 @@ export class TennisGame1 {
   }
 
   isWinningPointForOnePlayer() {
-    return this.m_score1 >= 4 || this.m_score2 >= 4
+    return this.player1.score >= 4 || this.player2.score >= 4
   }
 
   calculateScores() {
-    const player1Score = this.calculateScoreForPlayer(this.m_score1)
-    const player2Score = this.calculateScoreForPlayer(this.m_score2)
+    const player1Score = this.calculateScoreForPlayer(this.player1.score)
+    const player2Score = this.calculateScoreForPlayer(this.player2.score)
     return `${player1Score}-${player2Score}`
   }
 
