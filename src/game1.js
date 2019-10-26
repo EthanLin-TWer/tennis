@@ -12,18 +12,22 @@ export class TennisGame1 {
   }
 
   getScore() {
-    if (this.m_score1 === this.m_score2) {
-      return this.calculateNormalScores()
+    if (this.isTwoPlayersScoreEqually()) {
+      return this.reportEqualScores()
     }
 
-    if (this.isGameFinished()) {
-      return this.calculateFinalScores()
+    if (this.isWinningPointForOnePlayer()) {
+      return this.reportWinningFrameScores()
     }
 
     return this.calculateScores()
   }
 
-  calculateNormalScores() {
+  isTwoPlayersScoreEqually() {
+    return this.m_score1 === this.m_score2
+  }
+
+  reportEqualScores() {
     switch (this.m_score1) {
       case 0:
         return 'Love-All'
@@ -36,7 +40,7 @@ export class TennisGame1 {
     }
   }
 
-  calculateFinalScores() {
+  reportWinningFrameScores() {
     let score = ''
     const minusResult = this.m_score1 - this.m_score2
     if (minusResult === 1) score = 'Advantage player1'
@@ -46,7 +50,7 @@ export class TennisGame1 {
     return score
   }
 
-  isGameFinished() {
+  isWinningPointForOnePlayer() {
     return this.m_score1 >= 4 || this.m_score2 >= 4
   }
 
