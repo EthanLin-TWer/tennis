@@ -8,9 +8,9 @@ export class TennisGame1 {
 
   wonPoint(playerName) {
     if (playerName === 'player1') {
-      this.player1.score += 1
+      this.player1.winnings += 1
     } else {
-      this.player2.score += 1
+      this.player2.winnings += 1
     }
   }
 
@@ -27,11 +27,11 @@ export class TennisGame1 {
   }
 
   isTwoPlayersScoreEqually() {
-    return this.player1.score === this.player2.score
+    return this.player1.winnings === this.player2.winnings
   }
 
   reportEqualScores() {
-    switch (this.player1.score) {
+    switch (this.player1.winnings) {
       case 0:
         return 'Love-All'
       case 1:
@@ -44,7 +44,7 @@ export class TennisGame1 {
   }
 
   reportWinningFrameScores() {
-    const minusResult = this.player1.score - this.player2.score
+    const minusResult = this.player1.winnings - this.player2.winnings
     if (minusResult === 1) {
       return 'Advantage player1'
     }
@@ -61,7 +61,7 @@ export class TennisGame1 {
   }
 
   isWinningPointForOnePlayer() {
-    return this.player1.score >= 4 || this.player2.score >= 4
+    return this.player1.winnings >= 4 || this.player2.winnings >= 4
   }
 
   reportNormalScores() {

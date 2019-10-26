@@ -1,11 +1,20 @@
 export class Player {
-  score
-  constructor(score = 0) {
-    this.score = score
+  #winnings
+
+  constructor(winnings = 0) {
+    this.#winnings = winnings
+  }
+
+  get winnings() {
+    return this.#winnings
+  }
+
+  set winnings(value) {
+    this.#winnings = value
   }
 
   getScore() {
-    switch (this.score) {
+    switch (this.#winnings) {
       case 0:
         return 'Love'
       case 1:
