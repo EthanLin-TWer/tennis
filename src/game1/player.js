@@ -22,9 +22,8 @@ export class Player {
       case 2:
         return 'Thirty'
       case 3:
-        return 'Forty'
       default:
-        return null
+        return 'Forty'
     }
   }
 }

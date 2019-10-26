@@ -31,16 +31,11 @@ export class TennisGame1 {
   }
 
   reportEqualScores() {
-    switch (this.player1.winnings) {
-      case 0:
-        return 'Love-All'
-      case 1:
-        return 'Fifteen-All'
-      case 2:
-        return 'Thirty-All'
-      default:
-        return 'Deuce'
+    if (this.player1.getScore() === 'Forty') {
+      return 'Deuce'
     }
+
+    return `${this.player1.getScore()}-All`
   }
 
   reportWinningFrameScores() {
