@@ -1,4 +1,5 @@
 import { Player } from './player'
+import { SituationFactory } from './situations/factory'
 
 export class TennisGame1 {
   constructor() {
@@ -15,6 +16,9 @@ export class TennisGame1 {
   }
 
   getScore() {
-    return this.player1.getScoreTo(this.player2)
+    return SituationFactory.currentSituation(
+      this.player1,
+      this.player2
+    ).getScores()
   }
 }

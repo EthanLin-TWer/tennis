@@ -1,4 +1,5 @@
 import { Scores } from './scores'
+import { SituationFactory } from './situations/factory'
 
 export class Player {
   #winnings
@@ -24,50 +25,7 @@ export class Player {
   }
 
   wins(player) {
-    return this.#winnings >= 4 && this.#winnings - player.winnings !== 1
-  }
-
-  getScoreTo(player) {
-    if (this.hasSameScore(player)) {
-      return this.reportEqualScores()
-    }
-
-    if (this.hasAdvantage(player) || player.hasAdvantage(this)) {
-      return this.reportWinningFrameScores(player)
-    }
-
-    if (this.wins(player) || player.wins(this)) {
-      return this.reportGameFinalScores(player)
-    }
-
-    return this.reportNormalScores(player)
-  }
-
-  reportGameFinalScores(player) {
-    if (this.winnings - player.winnings >= 2) {
-      return 'Win for player1'
-    }
-    return 'Win for player2'
-  }
-
-  reportWinningFrameScores(player) {
-    if (this.winnings - player.winnings === 1) {
-      return 'Advantage player1'
-    }
-
-    return 'Advantage player2'
-  }
-
-  reportEqualScores() {
-    if (this.getScore() === Scores.FORTY) {
-      return Scores.DEUCE
-    }
-
-    return `${this.getScore()}-${Scores.ALL}`
-  }
-
-  reportNormalScores(player) {
-    return `${this.getScore()}-${player.getScore()}`
+    return this.#winnings >= 4 && this.#winnings - player.winnings >= 2
   }
 
   getScore() {
