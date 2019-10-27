@@ -2,9 +2,9 @@ import { Player } from './player'
 import { SituationFactory } from './situations/factory'
 
 export class TennisGame1 {
-  constructor() {
-    this.player1 = new Player()
-    this.player2 = new Player()
+  constructor(player1Name, player2Name) {
+    this.player1 = new Player(player1Name)
+    this.player2 = new Player(player2Name)
   }
 
   wonPoint(playerName, points = 1) {
@@ -12,7 +12,7 @@ export class TennisGame1 {
   }
 
   wonPoints(playerName, points) {
-    if (playerName === 'player1') {
+    if (playerName === this.player1.name) {
       this.player1.winnings += points
     } else {
       this.player2.winnings += points

@@ -1,11 +1,16 @@
 import { Scores } from './scores'
-import { SituationFactory } from './situations/factory'
 
 export class Player {
   #winnings
+  #name
 
-  constructor(winnings = 0) {
+  constructor(name, winnings = 0) {
+    this.#name = name
     this.#winnings = winnings
+  }
+
+  get name() {
+    return this.#name
   }
 
   get winnings() {
