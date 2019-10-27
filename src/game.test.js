@@ -1,6 +1,9 @@
 import { TennisGame1 } from './game1/game1'
+import { Player as Player1 } from './game1/player'
 import { TennisGame2 } from './game2/game2'
+import { Player as Player2 } from './game2/player'
 import { TennisGame3 } from './game3/game3'
+import { Player as Player3 } from './game3/player'
 
 const allScores = [
   [0, 0, 'Love-All'],
@@ -47,9 +50,10 @@ describe('TennisGame1', () => {
   test.each(allScores)(
     'score of %s-%s should be %s',
     (player1Points, player2Points, expectedScore) => {
-      const game = new TennisGame1('player1', 'player2')
-      game.player1.points += player1Points
-      game.player2.points += player2Points
+      const game = new TennisGame1(
+        new Player1('player1', player1Points),
+        new Player1('player2', player2Points)
+      )
 
       const result = game.getScore()
 
@@ -62,9 +66,10 @@ describe('TennisGame2', () => {
   test.each(allScores)(
     'score of %s-%s should be %s',
     (player1Points, player2Points, expectedScore) => {
-      const game = new TennisGame2('player1', 'player2')
-      game.player1.points += player1Points
-      game.player2.points += player2Points
+      const game = new TennisGame2(
+        new Player2('player1', player1Points),
+        new Player2('player2', player2Points)
+      )
 
       const result = game.getScore()
 
@@ -77,9 +82,10 @@ describe('TennisGame3', () => {
   test.each(allScores)(
     'score of %s-%s should be %s',
     (player1Points, player2Points, expectedScore) => {
-      const game = new TennisGame3('player1', 'player2')
-      game.player1.points += player1Points
-      game.player2.points += player2Points
+      const game = new TennisGame3(
+        new Player3('player1', player1Points),
+        new Player3('player2', player2Points)
+      )
 
       const result = game.getScore()
 

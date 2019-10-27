@@ -1,11 +1,9 @@
-import { deprecated } from 'core-decorators'
-import { Player } from './player'
 import { Points } from './constants'
 
 export class TennisGame2 {
-  constructor(player1Name, player2Name) {
-    this.player1 = new Player(player1Name)
-    this.player2 = new Player(player2Name)
+  constructor(player1, player2) {
+    this.player1 = player1
+    this.player2 = player2
   }
 
   getScore() {

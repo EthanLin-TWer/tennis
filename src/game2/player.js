@@ -4,9 +4,9 @@ export class Player {
   #name
   #points
 
-  constructor(name) {
+  constructor(name, points = 0) {
     this.#name = name
-    this.#points = 0
+    this.#points = points
   }
 
   get name() {
