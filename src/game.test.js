@@ -158,4 +158,19 @@ describe('New TennisGame', () => {
       }
     )
   })
+
+  describe('TennisGame3', () => {
+    test.each(allScores)(
+      'score of %s-%s should be %s',
+      (player1Winnings, player2Winnings, expectedScore) => {
+        const game = new TennisGame3('player1', 'player2')
+        game.wonPoint('player1', player1Winnings)
+        game.wonPoint('player2', player2Winnings)
+
+        const result = game.getScore()
+
+        expect(result).toEqual(expectedScore)
+      }
+    )
+  })
 })
