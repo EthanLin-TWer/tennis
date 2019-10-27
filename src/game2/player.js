@@ -23,14 +23,6 @@ export class Player {
     this.#winnings = value
   }
 
-  get score() {
-    return this.#score
-  }
-
-  set score(value) {
-    this.#score = value
-  }
-
   getScore() {
     if (this.point === 0) return 'Love'
     if (this.point === 1) return 'Fifteen'
