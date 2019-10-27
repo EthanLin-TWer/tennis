@@ -27,12 +27,4 @@ export class TennisGame3 {
       ? `Advantage ${s}`
       : `Win for ${s}`
   }
-
-  wonPoint(playerName, points = 1) {
-    if (playerName === this.player1.name) {
-      this.player1.winnings += points
-    } else {
-      this.player2.winnings += points
-    }
-  }
 }

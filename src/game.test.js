@@ -60,14 +60,9 @@ describe('TennisGame', () => {
 
     try {
       game = new TennisGame('player1', 'player2')
-      for (i = 0; i < highestScore; i++) {
-        if (i < player1Score) {
-          game.wonPoint('player1')
-        }
-        if (i < player2Score) {
-          game.wonPoint('player2')
-        }
-      }
+      game.player1.winnings += player1Score
+      game.player2.winnings += player2Score
+
       result = game.getScore()
 
       if (result === expectedScore) {
@@ -164,8 +159,8 @@ describe('New TennisGame', () => {
       'score of %s-%s should be %s',
       (player1Winnings, player2Winnings, expectedScore) => {
         const game = new TennisGame3('player1', 'player2')
-        game.wonPoint('player1', player1Winnings)
-        game.wonPoint('player2', player2Winnings)
+        game.player1.winnings += player1Winnings
+        game.player2.winnings += player2Winnings
 
         const result = game.getScore()
 

@@ -49,13 +49,4 @@ export class TennisGame2 {
       this.player1.point > Points.THIRTY
     )
   }
-
-  @deprecated('Will be removed once Game3 refactorings done.')
-  wonPoint(playerName, points = 1) {
-    if (playerName === this.player1.name) {
-      this.player1.winnings += points
-    } else {
-      this.player2.winnings += points
-    }
-  }
 }
