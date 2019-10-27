@@ -115,11 +115,11 @@ describe('TennisGame', () => {
     reporter.done()
   })
 
-  it('should return correct result for game 1', () => {
+  it.skip('should return correct result for game 1', () => {
     runSuiteOnGame(reporter, TennisGame1, 'TennisGame1')
   })
 
-  it('should return correct result for game 2', () => {
+  it.skip('should return correct result for game 2', () => {
     runSuiteOnGame(reporter, TennisGame2, 'TennisGame2')
   })
 
@@ -134,6 +134,21 @@ describe('New TennisGame', () => {
       'score of %s-%s should be %s',
       (player1Winnings, player2Winnings, expectedScore) => {
         const game = new TennisGame1('player1', 'player2')
+        game.player1.winnings += player1Winnings
+        game.player2.winnings += player2Winnings
+
+        const result = game.getScore()
+
+        expect(result).toEqual(expectedScore)
+      }
+    )
+  })
+
+  describe('TennisGame2', () => {
+    test.each(allScores)(
+      'score of %s-%s should be %s',
+      (player1Winnings, player2Winnings, expectedScore) => {
+        const game = new TennisGame2('player1', 'player2')
         game.player1.winnings += player1Winnings
         game.player2.winnings += player2Winnings
 
