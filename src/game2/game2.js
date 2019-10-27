@@ -76,20 +76,6 @@ export class TennisGame2 {
     return score
   }
 
-  SetP1Score(number) {
-    let i
-    for (i = 0; i < number; i++) {
-      this.player1.point++
-    }
-  }
-
-  SetP2Score(number) {
-    let i
-    for (i = 0; i < number; i++) {
-      this.player2.point++
-    }
-  }
-
   @deprecated('Will be removed once Game3 refactorings done.')
   wonPoint(playerName, points = 1) {
     if (playerName === this.player1.name) {

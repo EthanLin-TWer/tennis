@@ -13,10 +13,6 @@ export class Player {
     return this.#winnings
   }
 
-  set point(value) {
-    this.#winnings = value
-  }
-
   get winnings() {
     return this.#winnings
   }
