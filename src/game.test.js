@@ -43,129 +43,47 @@ const allScores = [
   [14, 16, 'Win for player2'],
 ]
 
-describe('TennisGame', () => {
-  const checkScore = function(
-    reporter,
-    TennisGame,
-    player1Score,
-    player2Score,
-    expectedScore
-  ) {
-    const highestScore = Math.max(player1Score, player2Score)
-    let game
-    let result
-    let message = ''
-    let ok = false
-    let i
+describe('TennisGame1', () => {
+  test.each(allScores)(
+    'score of %s-%s should be %s',
+    (player1Winnings, player2Winnings, expectedScore) => {
+      const game = new TennisGame1('player1', 'player2')
+      game.player1.winnings += player1Winnings
+      game.player2.winnings += player2Winnings
 
-    try {
-      game = new TennisGame('player1', 'player2')
-      game.player1.winnings += player1Score
-      game.player2.winnings += player2Score
+      const result = game.getScore()
 
-      result = game.getScore()
-
-      if (result === expectedScore) {
-        ok = true
-      } else {
-        message = `Result = '${result}'`
-      }
-    } catch (ex) {
-      message = `Exception: ${ex}`
+      expect(result).toEqual(expectedScore)
     }
-
-    reporter.addCase(expectedScore, ok, message)
-  }
-
-  const runSuiteOnGame = function(reporter, TennisGame, title) {
-    reporter.addSuite(title)
-    allScores.forEach(function(score) {
-      checkScore(reporter, TennisGame, score[0], score[1], score[2])
-    })
-  }
-
-  const getConsoleReporter = () => ({
-    errors: 0,
-    addSuite(title) {
-      console.log(`Running suite '${title}'...`)
-    },
-    addCase(title, ok, message) {
-      if (!ok) {
-        console.log(`Case '${title}': ${message}`)
-        this.errors += 1
-      }
-    },
-    done() {
-      if (this.errors > 0) {
-        throw new Error(`Got ${this.errors} failure(s)!`)
-      }
-
-      console.log('Done, all OK ')
-    },
-  })
-
-  const reporter = getConsoleReporter()
-
-  afterEach(() => {
-    reporter.done()
-  })
-
-  it('should return correct result for game 1', () => {
-    runSuiteOnGame(reporter, TennisGame1, 'TennisGame1')
-  })
-
-  it('should return correct result for game 2', () => {
-    runSuiteOnGame(reporter, TennisGame2, 'TennisGame2')
-  })
-
-  it('should return correct result for game 3', () => {
-    runSuiteOnGame(reporter, TennisGame3, 'TennisGame3')
-  })
+  )
 })
 
-describe('New TennisGame', () => {
-  describe('TennisGame1', () => {
-    test.each(allScores)(
-      'score of %s-%s should be %s',
-      (player1Winnings, player2Winnings, expectedScore) => {
-        const game = new TennisGame1('player1', 'player2')
-        game.player1.winnings += player1Winnings
-        game.player2.winnings += player2Winnings
+describe('TennisGame2', () => {
+  test.each(allScores)(
+    'score of %s-%s should be %s',
+    (player1Winnings, player2Winnings, expectedScore) => {
+      const game = new TennisGame2('player1', 'player2')
+      game.player1.winnings += player1Winnings
+      game.player2.winnings += player2Winnings
 
-        const result = game.getScore()
+      const result = game.getScore()
 
-        expect(result).toEqual(expectedScore)
-      }
-    )
-  })
+      expect(result).toEqual(expectedScore)
+    }
+  )
+})
 
-  describe('TennisGame2', () => {
-    test.each(allScores)(
-      'score of %s-%s should be %s',
-      (player1Winnings, player2Winnings, expectedScore) => {
-        const game = new TennisGame2('player1', 'player2')
-        game.player1.winnings += player1Winnings
-        game.player2.winnings += player2Winnings
+describe('TennisGame3', () => {
+  test.each(allScores)(
+    'score of %s-%s should be %s',
+    (player1Winnings, player2Winnings, expectedScore) => {
+      const game = new TennisGame3('player1', 'player2')
+      game.player1.winnings += player1Winnings
+      game.player2.winnings += player2Winnings
 
-        const result = game.getScore()
+      const result = game.getScore()
 
-        expect(result).toEqual(expectedScore)
-      }
-    )
-  })
-
-  describe('TennisGame3', () => {
-    test.each(allScores)(
-      'score of %s-%s should be %s',
-      (player1Winnings, player2Winnings, expectedScore) => {
-        const game = new TennisGame3('player1', 'player2')
-        game.player1.winnings += player1Winnings
-        game.player2.winnings += player2Winnings
-
-        const result = game.getScore()
-
-        expect(result).toEqual(expectedScore)
-      }
-    )
-  })
+      expect(result).toEqual(expectedScore)
+    }
+  )
 })
