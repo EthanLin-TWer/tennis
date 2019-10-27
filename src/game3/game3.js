@@ -9,6 +9,7 @@ export class TennisGame3 {
   getScore() {
     if (this.neitherPlayerReachesForty()) {
       const Scores = ['Love', 'Fifteen', 'Thirty', 'Forty']
+      // eslint-disable-next-line prefer-destructuring
       const player1Score = Scores[this.player1.winnings]
 
       if (this.player1.winnings === this.player2.winnings) {
@@ -18,20 +19,33 @@ export class TennisGame3 {
       return `${player1Score}-${Scores[this.player2.winnings]}`
     }
 
-    if (this.player1.winnings === this.player2.winnings) {
+    if (this.isDeuce()) {
       return 'Deuce'
     }
 
-    const t =
-      this.player1.winnings > this.player2.winnings
-        ? this.player1.name
-        : this.player2.name
+    if (this.isOnePlayerInAdvantage()) {
+      return `Advantage ${this.getNameOfPlayerInLead()}`
+    }
 
-    return (this.player1.winnings - this.player2.winnings) *
-      (this.player1.winnings - this.player2.winnings) ===
+    return `Win for ${this.getNameOfPlayerInLead()}`
+  }
+
+  isDeuce() {
+    return this.player1.winnings === this.player2.winnings
+  }
+
+  getNameOfPlayerInLead() {
+    return this.player1.winnings > this.player2.winnings
+      ? this.player1.name
+      : this.player2.name
+  }
+
+  isOnePlayerInAdvantage() {
+    return (
+      (this.player1.winnings - this.player2.winnings) *
+        (this.player1.winnings - this.player2.winnings) ===
       1
-      ? `Advantage ${t}`
-      : `Win for ${t}`
+    )
   }
 
   neitherPlayerReachesForty() {
