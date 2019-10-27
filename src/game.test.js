@@ -1,6 +1,6 @@
 import { TennisGame1 } from './game1/game1'
 import { TennisGame2 } from './game2/game2'
-import { TennisGame3 } from './game3'
+import { TennisGame3 } from './game3/game3'
 
 const allScores = [
   [0, 0, 'Love-All'],
