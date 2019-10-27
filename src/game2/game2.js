@@ -13,15 +13,11 @@ export class TennisGame2 {
     if (this.player1.point === this.player2.point && this.player1.point < 3) {
       score += `${this.player1.getScore()}-All`
     }
-    if (this.player1.point === this.player2.point && this.player1.point > 2)
+    if (this.player1.point === this.player2.point && this.player1.point > 2) {
       score = 'Deuce'
-
-    if (this.player1.point > 0 && this.player2.point === 0) {
-      this.player1.score = this.player1.getScore()
-      this.player2.score = this.player2.getScore()
-      score = `${this.player1.score}-${this.player2.score}`
     }
-    if (this.player2.point > 0 && this.player1.point === 0) {
+
+    if (this.isInTheMiddleOfAMatch()) {
       this.player1.score = this.player1.getScore()
       this.player2.score = this.player2.getScore()
       score = `${this.player1.score}-${this.player2.score}`
@@ -34,10 +30,8 @@ export class TennisGame2 {
     }
 
     if (this.player2.point > this.player1.point && this.player2.point < 4) {
-      if (this.player2.point === 2) this.player2.score = 'Thirty'
-      if (this.player2.point === 3) this.player2.score = 'Forty'
-      if (this.player1.point === 1) this.player1.score = 'Fifteen'
-      if (this.player1.point === 2) this.player1.score = 'Thirty'
+      this.player1.score = this.player1.getScore()
+      this.player2.score = this.player2.getScore()
       score = `${this.player1.score}-${this.player2.score}`
     }
 
@@ -64,6 +58,13 @@ export class TennisGame2 {
       score = `Win for ${this.player2.name}`
     }
     return score
+  }
+
+  isInTheMiddleOfAMatch() {
+    return (
+      (this.player1.point > 0 && this.player2.point === 0) ||
+      (this.player2.point > 0 && this.player1.point === 0)
+    )
   }
 
   @deprecated('Will be removed once Game3 refactorings done.')
