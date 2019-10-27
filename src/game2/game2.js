@@ -1,3 +1,4 @@
+import { deprecated } from 'core-decorators'
 import { Player } from './player'
 
 export class TennisGame2 {
@@ -78,27 +79,23 @@ export class TennisGame2 {
   SetP1Score(number) {
     let i
     for (i = 0; i < number; i++) {
-      this.P1Score()
+      this.player1.point++
     }
   }
 
   SetP2Score(number) {
     let i
     for (i = 0; i < number; i++) {
-      this.P2Score()
+      this.player2.point++
     }
   }
 
-  P1Score() {
-    this.player1.point++
-  }
-
-  P2Score() {
-    this.player2.point++
-  }
-
-  wonPoint(player) {
-    if (player === 'player1') this.P1Score()
-    else this.P2Score()
+  @deprecated('Will be removed once Game3 refactorings done.')
+  wonPoint(playerName, points = 1) {
+    if (playerName === this.player1.name) {
+      this.player1.winnings += points
+    } else {
+      this.player2.winnings += points
+    }
   }
 }
