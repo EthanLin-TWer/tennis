@@ -31,6 +31,10 @@ export class TennisGame3 {
   }
 
   isDeuce() {
+    if (this.neitherPlayerReachesForty()) {
+      return false
+    }
+
     return this.player1.winnings === this.player2.winnings
   }
 
@@ -41,6 +45,10 @@ export class TennisGame3 {
   }
 
   isOnePlayerInAdvantage() {
+    if (this.neitherPlayerReachesForty()) {
+      return false
+    }
+
     return (
       (this.player1.winnings - this.player2.winnings) *
         (this.player1.winnings - this.player2.winnings) ===
