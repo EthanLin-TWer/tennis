@@ -1,5 +1,6 @@
 import { deprecated } from 'core-decorators'
 import { Player } from './player'
+import { Points } from './points'
 
 export class TennisGame2 {
   constructor(player1Name, player2Name) {
@@ -8,19 +9,19 @@ export class TennisGame2 {
   }
 
   getScore() {
-    if (this.player1.point === this.player2.point && this.player1.point < 3) {
-      return `${this.player1.getScore()}-All`
-    }
+    if (this.player1.point === this.player2.point) {
+      if (this.player1.point <= Points.THIRTY) {
+        return `${this.player1.getScore()}-All`
+      }
 
-    if (this.player1.point === this.player2.point && this.player1.point > 2) {
       return 'Deuce'
     }
 
-    if (this.player1Won()) {
+    if (this.player1.wins(this.player2)) {
       return `Win for ${this.player1.name}`
     }
 
-    if (this.player2Won()) {
+    if (this.player2.wins(this.player1)) {
       return `Win for ${this.player2.name}`
     }
 
@@ -47,22 +48,6 @@ export class TennisGame2 {
 
   isPlayer2InWinningFrame() {
     return this.player2.point > this.player1.point && this.player1.point >= 3
-  }
-
-  player2Won() {
-    return (
-      this.player2.point >= 4 &&
-      this.player1.point >= 0 &&
-      this.player2.point - this.player1.point >= 2
-    )
-  }
-
-  player1Won() {
-    return (
-      this.player1.point >= 4 &&
-      this.player2.point >= 0 &&
-      this.player1.point - this.player2.point >= 2
-    )
   }
 
   isInTheMiddleOfAMatch() {
