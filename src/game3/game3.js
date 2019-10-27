@@ -1,14 +1,17 @@
-export class TennisGame3 {
-  p1
-  p2
-  p1N
-  p2N
+import { Player } from './player'
 
-  constructor(p1N, p2N) {
-    this.p1 = 0
-    this.p2 = 0
-    this.p1N = p1N
-    this.p2N = p2N
+export class TennisGame3 {
+  constructor(player1Name, player2Name) {
+    this.player1 = new Player(player1Name)
+    this.player2 = new Player(player2Name)
+  }
+
+  get p1() {
+    return this.player1.winnings
+  }
+
+  get p2() {
+    return this.player2.winnings
   }
 
   getScore() {
@@ -19,14 +22,17 @@ export class TennisGame3 {
       return this.p1 == this.p2 ? `${s}-All` : `${s}-${p[this.p2]}`
     }
     if (this.p1 == this.p2) return 'Deuce'
-    s = this.p1 > this.p2 ? this.p1N : this.p2N
+    s = this.p1 > this.p2 ? this.player1.name : this.player2.name
     return (this.p1 - this.p2) * (this.p1 - this.p2) == 1
       ? `Advantage ${s}`
       : `Win for ${s}`
   }
 
-  wonPoint(playerName) {
-    if (playerName == 'player1') this.p1 += 1
-    else this.p2 += 1
+  wonPoint(playerName, points = 1) {
+    if (playerName === this.player1.name) {
+      this.player1.winnings += points
+    } else {
+      this.player2.winnings += points
+    }
   }
 }
