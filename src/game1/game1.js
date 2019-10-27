@@ -7,11 +7,15 @@ export class TennisGame1 {
     this.player2 = new Player()
   }
 
-  wonPoint(playerName) {
+  wonPoint(playerName, points = 1) {
+    this.wonPoints(playerName, points)
+  }
+
+  wonPoints(playerName, points) {
     if (playerName === 'player1') {
-      this.player1.winnings += 1
+      this.player1.winnings += points
     } else {
-      this.player2.winnings += 1
+      this.player2.winnings += points
     }
   }
 

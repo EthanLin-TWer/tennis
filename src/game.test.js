@@ -89,30 +89,25 @@ describe('TennisGame', () => {
     })
   }
 
-  const getConsoleReporter = function() {
-    const reporter = {
-      errors: 0,
-      addSuite(title) {
-        console.log(`Running suite '${title}'...`)
-      },
-      addCase(title, ok, message) {
-        if (!ok) {
-          console.log(`Case '${title}': ${message}`)
-          this.errors++
-        }
-      },
-      done() {
-        if (this.errors > 0) {
-          console.log(`Got ${this.errors} failure(s)!`)
-          throw new Error(`Got ${this.errors} failure(s)!`)
-        } else {
-          console.log('Done, all OK ')
-        }
-      },
-    }
+  const getConsoleReporter = () => ({
+    errors: 0,
+    addSuite(title) {
+      console.log(`Running suite '${title}'...`)
+    },
+    addCase(title, ok, message) {
+      if (!ok) {
+        console.log(`Case '${title}': ${message}`)
+        this.errors += 1
+      }
+    },
+    done() {
+      if (this.errors > 0) {
+        throw new Error(`Got ${this.errors} failure(s)!`)
+      }
 
-    return reporter
-  }
+      console.log('Done, all OK ')
+    },
+  })
 
   const reporter = getConsoleReporter()
 
