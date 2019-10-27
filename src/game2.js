@@ -54,11 +54,11 @@ export class TennisGame2 {
     }
 
     if (this.P1point > this.P2point && this.P2point >= 3) {
-      score = 'Advantage player1'
+      score = `Advantage ${this.player1Name}`
     }
 
     if (this.P2point > this.P1point && this.P1point >= 3) {
-      score = 'Advantage player2'
+      score = `Advantage ${this.player2Name}`
     }
 
     if (
@@ -66,14 +66,14 @@ export class TennisGame2 {
       this.P2point >= 0 &&
       this.P1point - this.P2point >= 2
     ) {
-      score = 'Win for player1'
+      score = `Win for ${this.player1Name}`
     }
     if (
       this.P2point >= 4 &&
       this.P1point >= 0 &&
       this.P2point - this.P1point >= 2
     ) {
-      score = 'Win for player2'
+      score = `Win for ${this.player2Name}`
     }
     return score
   }
