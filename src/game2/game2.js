@@ -11,10 +11,7 @@ export class TennisGame2 {
     let score = ''
 
     if (this.player1.point === this.player2.point && this.player1.point < 3) {
-      if (this.player1.point === 0) score = 'Love'
-      if (this.player1.point === 1) score = 'Fifteen'
-      if (this.player1.point === 2) score = 'Thirty'
-      score += '-All'
+      score += `${this.player1.getScore()}-All`
     }
     if (this.player1.point === this.player2.point && this.player1.point > 2)
       score = 'Deuce'
