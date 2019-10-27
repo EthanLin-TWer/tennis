@@ -1,4 +1,4 @@
-import { Points } from './points'
+import { Points, Scores } from './constants'
 
 export class Player {
   name
@@ -24,10 +24,7 @@ export class Player {
   }
 
   getScore() {
-    if (this.point === 0) return 'Love'
-    if (this.point === 1) return 'Fifteen'
-    if (this.point === 2) return 'Thirty'
-    if (this.point === 3) return 'Forty'
+    return Scores[this.point]
   }
 
   wins(opponent) {

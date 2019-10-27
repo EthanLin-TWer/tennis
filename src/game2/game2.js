@@ -1,6 +1,6 @@
 import { deprecated } from 'core-decorators'
 import { Player } from './player'
-import { Points } from './points'
+import { Points } from './constants'
 
 export class TennisGame2 {
   constructor(player1Name, player2Name) {
