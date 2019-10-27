@@ -115,11 +115,11 @@ describe('TennisGame', () => {
     reporter.done()
   })
 
-  it.skip('should return correct result for game 1', () => {
+  it('should return correct result for game 1', () => {
     runSuiteOnGame(reporter, TennisGame1, 'TennisGame1')
   })
 
-  it.skip('should return correct result for game 2', () => {
+  it('should return correct result for game 2', () => {
     runSuiteOnGame(reporter, TennisGame2, 'TennisGame2')
   })
 
