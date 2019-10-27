@@ -6,7 +6,5 @@ export class Situation {
     this.opponent = opponent
   }
 
-  getScores() {
-    throw new Error('developer responsibility exception')
-  }
+  getScores() {}
 }

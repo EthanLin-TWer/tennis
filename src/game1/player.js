@@ -17,10 +17,6 @@ export class Player {
     return this.#points
   }
 
-  set points(value) {
-    this.#points = value
-  }
-
   hasSameScore(player) {
     return this.#points === player.points
   }

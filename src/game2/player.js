@@ -17,10 +17,6 @@ export class Player {
     return this.#points
   }
 
-  set points(value) {
-    this.#points = value
-  }
-
   getScore() {
     return Scores[this.points]
   }

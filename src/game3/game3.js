@@ -29,10 +29,6 @@ export class TennisGame3 {
   }
 
   isDeuce() {
-    if (this.neitherPlayerReachesForty()) {
-      return false
-    }
-
     return this.player1.points === this.player2.points
   }
 
@@ -43,10 +39,6 @@ export class TennisGame3 {
   }
 
   isOnePlayerInAdvantage() {
-    if (this.neitherPlayerReachesForty()) {
-      return false
-    }
-
     return (
       (this.player1.points - this.player2.points) *
         (this.player1.points - this.player2.points) ===
