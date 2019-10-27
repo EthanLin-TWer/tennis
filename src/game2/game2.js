@@ -9,14 +9,6 @@ export class TennisGame2 {
   }
 
   getScore() {
-    if (this.player1.point === this.player2.point) {
-      if (this.player1.point <= Points.THIRTY) {
-        return `${this.player1.getScore()}-All`
-      }
-
-      return 'Deuce'
-    }
-
     if (this.player1.wins(this.player2)) {
       return `Win for ${this.player1.name}`
     }
@@ -25,37 +17,36 @@ export class TennisGame2 {
       return `Win for ${this.player2.name}`
     }
 
-    if (this.isInTheMiddleOfAMatch()) {
-      this.player1.score = this.player1.getScore()
-      this.player2.score = this.player2.getScore()
-      return `${this.player1.score}-${this.player2.score}`
-    }
-
-    if (this.isPlayer1InWinningFrame()) {
+    if (this.player1.isInAdvantage(this.player2)) {
       return `Advantage ${this.player1.name}`
     }
 
-    if (this.isPlayer2InWinningFrame()) {
+    if (this.player2.isInAdvantage(this.player1)) {
       return `Advantage ${this.player2.name}`
     }
 
-    throw new Error('should never reach here')
+    if (this.isDeuce()) {
+      return 'Deuce'
+    }
+
+    if (this.isFifteenFifteenOrThirtyThirty()) {
+      return `${this.player1.getScore()}-All`
+    }
+
+    return `${this.player1.getScore()}-${this.player2.getScore()}`
   }
 
-  isPlayer1InWinningFrame() {
-    return this.player1.point > this.player2.point && this.player2.point >= 3
-  }
-
-  isPlayer2InWinningFrame() {
-    return this.player2.point > this.player1.point && this.player1.point >= 3
-  }
-
-  isInTheMiddleOfAMatch() {
+  isFifteenFifteenOrThirtyThirty() {
     return (
-      (this.player1.point > 0 && this.player2.point === 0) ||
-      (this.player2.point > 0 && this.player1.point === 0) ||
-      (this.player1.point > this.player2.point && this.player1.point < 4) ||
-      (this.player2.point > this.player1.point && this.player2.point < 4)
+      this.player1.point === this.player2.point &&
+      this.player1.point <= Points.THIRTY
+    )
+  }
+
+  isDeuce() {
+    return (
+      this.player1.point === this.player2.point &&
+      this.player1.point > Points.THIRTY
     )
   }
 

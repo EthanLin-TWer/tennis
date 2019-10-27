@@ -36,10 +36,13 @@ export class Player {
     if (this.point === 1) return 'Fifteen'
     if (this.point === 2) return 'Thirty'
     if (this.point === 3) return 'Forty'
-    return this.#score
   }
 
   wins(opponent) {
     return this.point > Points.FORTY && this.point - opponent.point >= 2
+  }
+
+  isInAdvantage(opponent) {
+    return this.point > opponent.point && opponent.point >= Points.FORTY
   }
 }
