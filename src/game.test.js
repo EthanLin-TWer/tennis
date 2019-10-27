@@ -134,8 +134,8 @@ describe('New TennisGame', () => {
       'score of %s-%s should be %s',
       (player1Winnings, player2Winnings, expectedScore) => {
         const game = new TennisGame1('player1', 'player2')
-        game.wonPoints('player1', player1Winnings)
-        game.wonPoints('player2', player2Winnings)
+        game.player1.winnings += player1Winnings
+        game.player2.winnings += player2Winnings
 
         const result = game.getScore()
 

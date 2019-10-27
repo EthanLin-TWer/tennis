@@ -1,3 +1,4 @@
+import { deprecated } from 'core-decorators'
 import { Player } from './player'
 import { SituationFactory } from './situations/factory'
 
@@ -7,11 +8,8 @@ export class TennisGame1 {
     this.player2 = new Player(player2Name)
   }
 
+  @deprecated('Will be removed once Game2 and Game3 refactorings done.')
   wonPoint(playerName, points = 1) {
-    this.wonPoints(playerName, points)
-  }
-
-  wonPoints(playerName, points) {
     if (playerName === this.player1.name) {
       this.player1.winnings += points
     } else {
