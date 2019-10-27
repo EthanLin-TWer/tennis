@@ -8,62 +8,69 @@ export class TennisGame2 {
   }
 
   getScore() {
-    let score = ''
-
     if (this.player1.point === this.player2.point && this.player1.point < 3) {
-      score += `${this.player1.getScore()}-All`
+      return `${this.player1.getScore()}-All`
     }
+
     if (this.player1.point === this.player2.point && this.player1.point > 2) {
-      score = 'Deuce'
+      return 'Deuce'
+    }
+
+    if (this.player1Won()) {
+      return `Win for ${this.player1.name}`
+    }
+
+    if (this.player2Won()) {
+      return `Win for ${this.player2.name}`
     }
 
     if (this.isInTheMiddleOfAMatch()) {
       this.player1.score = this.player1.getScore()
       this.player2.score = this.player2.getScore()
-      score = `${this.player1.score}-${this.player2.score}`
+      return `${this.player1.score}-${this.player2.score}`
     }
 
-    if (this.player1.point > this.player2.point && this.player1.point < 4) {
-      this.player1.score = this.player1.getScore()
-      this.player2.score = this.player2.getScore()
-      score = `${this.player1.score}-${this.player2.score}`
+    if (this.isPlayer1InWinningFrame()) {
+      return `Advantage ${this.player1.name}`
     }
 
-    if (this.player2.point > this.player1.point && this.player2.point < 4) {
-      this.player1.score = this.player1.getScore()
-      this.player2.score = this.player2.getScore()
-      score = `${this.player1.score}-${this.player2.score}`
+    if (this.isPlayer2InWinningFrame()) {
+      return `Advantage ${this.player2.name}`
     }
 
-    if (this.player1.point > this.player2.point && this.player2.point >= 3) {
-      score = `Advantage ${this.player1.name}`
-    }
+    throw new Error('should never reach here')
+  }
 
-    if (this.player2.point > this.player1.point && this.player1.point >= 3) {
-      score = `Advantage ${this.player2.name}`
-    }
+  isPlayer1InWinningFrame() {
+    return this.player1.point > this.player2.point && this.player2.point >= 3
+  }
 
-    if (
-      this.player1.point >= 4 &&
-      this.player2.point >= 0 &&
-      this.player1.point - this.player2.point >= 2
-    ) {
-      score = `Win for ${this.player1.name}`
-    }
-    if (
+  isPlayer2InWinningFrame() {
+    return this.player2.point > this.player1.point && this.player1.point >= 3
+  }
+
+  player2Won() {
+    return (
       this.player2.point >= 4 &&
       this.player1.point >= 0 &&
       this.player2.point - this.player1.point >= 2
-    ) {
-      score = `Win for ${this.player2.name}`
-    }
-    return score
+    )
+  }
+
+  player1Won() {
+    return (
+      this.player1.point >= 4 &&
+      this.player2.point >= 0 &&
+      this.player1.point - this.player2.point >= 2
+    )
   }
 
   isInTheMiddleOfAMatch() {
     return (
       (this.player1.point > 0 && this.player2.point === 0) ||
-      (this.player2.point > 0 && this.player1.point === 0)
+      (this.player2.point > 0 && this.player1.point === 0) ||
+      (this.player1.point > this.player2.point && this.player1.point < 4) ||
+      (this.player2.point > this.player1.point && this.player2.point < 4)
     )
   }
 
