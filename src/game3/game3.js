@@ -7,19 +7,21 @@ export class TennisGame3 {
   }
 
   getScore() {
-    if (
-      this.player1.winnings < 4 &&
-      this.player2.winnings < 4 &&
-      this.player1.winnings + this.player2.winnings < 6
-    ) {
+    if (this.neitherPlayerReachesForty()) {
       const Scores = ['Love', 'Fifteen', 'Thirty', 'Forty']
-      let s = Scores[this.player1.winnings]
+      const player1Score = Scores[this.player1.winnings]
+
       if (this.player1.winnings === this.player2.winnings) {
-        return `${s}-All`
+        return `${player1Score}-All`
       }
-      return `${s}-${Scores[this.player2.winnings]}`
+
+      return `${player1Score}-${Scores[this.player2.winnings]}`
     }
-    if (this.player1.winnings === this.player2.winnings) return 'Deuce'
+
+    if (this.player1.winnings === this.player2.winnings) {
+      return 'Deuce'
+    }
+
     const t =
       this.player1.winnings > this.player2.winnings
         ? this.player1.name
@@ -30,5 +32,13 @@ export class TennisGame3 {
       1
       ? `Advantage ${t}`
       : `Win for ${t}`
+  }
+
+  neitherPlayerReachesForty() {
+    return (
+      this.player1.winnings < 4 &&
+      this.player2.winnings < 4 &&
+      this.player1.winnings + this.player2.winnings < 6
+    )
   }
 }
