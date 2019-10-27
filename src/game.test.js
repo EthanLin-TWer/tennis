@@ -46,10 +46,10 @@ const allScores = [
 describe('TennisGame1', () => {
   test.each(allScores)(
     'score of %s-%s should be %s',
-    (player1Winnings, player2Winnings, expectedScore) => {
+    (player1Points, player2Points, expectedScore) => {
       const game = new TennisGame1('player1', 'player2')
-      game.player1.winnings += player1Winnings
-      game.player2.winnings += player2Winnings
+      game.player1.points += player1Points
+      game.player2.points += player2Points
 
       const result = game.getScore()
 
@@ -61,10 +61,10 @@ describe('TennisGame1', () => {
 describe('TennisGame2', () => {
   test.each(allScores)(
     'score of %s-%s should be %s',
-    (player1Winnings, player2Winnings, expectedScore) => {
+    (player1Points, player2Points, expectedScore) => {
       const game = new TennisGame2('player1', 'player2')
-      game.player1.winnings += player1Winnings
-      game.player2.winnings += player2Winnings
+      game.player1.points += player1Points
+      game.player2.points += player2Points
 
       const result = game.getScore()
 
@@ -76,10 +76,10 @@ describe('TennisGame2', () => {
 describe('TennisGame3', () => {
   test.each(allScores)(
     'score of %s-%s should be %s',
-    (player1Winnings, player2Winnings, expectedScore) => {
+    (player1Points, player2Points, expectedScore) => {
       const game = new TennisGame3('player1', 'player2')
-      game.player1.winnings += player1Winnings
-      game.player2.winnings += player2Winnings
+      game.player1.points += player1Points
+      game.player2.points += player2Points
 
       const result = game.getScore()
 

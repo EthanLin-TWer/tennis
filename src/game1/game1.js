@@ -1,4 +1,3 @@
-import { deprecated } from 'core-decorators'
 import { Player } from './player'
 import { SituationFactory } from './situations/factory'
 

@@ -1,40 +1,40 @@
 import { Scores } from './scores'
 
 export class Player {
-  #winnings
+  #points
   #name
 
-  constructor(name, winnings = 0) {
+  constructor(name, points = 0) {
     this.#name = name
-    this.#winnings = winnings
+    this.#points = points
   }
 
   get name() {
     return this.#name
   }
 
-  get winnings() {
-    return this.#winnings
+  get points() {
+    return this.#points
   }
 
-  set winnings(value) {
-    this.#winnings = value
+  set points(value) {
+    this.#points = value
   }
 
   hasSameScore(player) {
-    return this.#winnings === player.winnings
+    return this.#points === player.points
   }
 
   hasAdvantage(player) {
-    return this.#winnings >= 4 && this.#winnings - player.winnings === 1
+    return this.#points >= 4 && this.#points - player.points === 1
   }
 
   wins(player) {
-    return this.#winnings >= 4 && this.#winnings - player.winnings >= 2
+    return this.#points >= 4 && this.#points - player.points >= 2
   }
 
   getScore() {
-    switch (this.#winnings) {
+    switch (this.#points) {
       case 0:
         return Scores.ZERO
       case 1:

@@ -1,10 +1,10 @@
 export class Player {
   #name
-  #winnings
+  #points
 
   constructor(name, points = 0) {
     this.#name = name
-    this.#winnings = points
+    this.#points = points
   }
 
   get name() {
@@ -15,11 +15,11 @@ export class Player {
     this.#name = value
   }
 
-  get winnings() {
-    return this.#winnings
+  get points() {
+    return this.#points
   }
 
-  set winnings(value) {
-    this.#winnings = value
+  set points(value) {
+    this.#points = value
   }
 }

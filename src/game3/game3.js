@@ -10,13 +10,13 @@ export class TennisGame3 {
     if (this.neitherPlayerReachesForty()) {
       const Scores = ['Love', 'Fifteen', 'Thirty', 'Forty']
       // eslint-disable-next-line prefer-destructuring
-      const player1Score = Scores[this.player1.winnings]
+      const player1Score = Scores[this.player1.points]
 
-      if (this.player1.winnings === this.player2.winnings) {
+      if (this.player1.points === this.player2.points) {
         return `${player1Score}-All`
       }
 
-      return `${player1Score}-${Scores[this.player2.winnings]}`
+      return `${player1Score}-${Scores[this.player2.points]}`
     }
 
     if (this.isDeuce()) {
@@ -35,11 +35,11 @@ export class TennisGame3 {
       return false
     }
 
-    return this.player1.winnings === this.player2.winnings
+    return this.player1.points === this.player2.points
   }
 
   getNameOfPlayerInLead() {
-    return this.player1.winnings > this.player2.winnings
+    return this.player1.points > this.player2.points
       ? this.player1.name
       : this.player2.name
   }
@@ -50,17 +50,17 @@ export class TennisGame3 {
     }
 
     return (
-      (this.player1.winnings - this.player2.winnings) *
-        (this.player1.winnings - this.player2.winnings) ===
+      (this.player1.points - this.player2.points) *
+        (this.player1.points - this.player2.points) ===
       1
     )
   }
 
   neitherPlayerReachesForty() {
     return (
-      this.player1.winnings < 4 &&
-      this.player2.winnings < 4 &&
-      this.player1.winnings + this.player2.winnings < 6
+      this.player1.points < 4 &&
+      this.player2.points < 4 &&
+      this.player1.points + this.player2.points < 6
     )
   }
 }

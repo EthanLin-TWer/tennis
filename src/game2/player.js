@@ -1,37 +1,35 @@
 import { Points, Scores } from './constants'
 
 export class Player {
-  name
-  #winnings
-  #score
+  #name
+  #points
 
   constructor(name) {
-    this.name = name
-    this.#winnings = 0
-    this.#score = ''
+    this.#name = name
+    this.#points = 0
   }
 
-  get point() {
-    return this.#winnings
+  get name() {
+    return this.#name
   }
 
-  get winnings() {
-    return this.#winnings
+  get points() {
+    return this.#points
   }
 
-  set winnings(value) {
-    this.#winnings = value
+  set points(value) {
+    this.#points = value
   }
 
   getScore() {
-    return Scores[this.point]
+    return Scores[this.points]
   }
 
   wins(opponent) {
-    return this.point > Points.FORTY && this.point - opponent.point >= 2
+    return this.points > Points.FORTY && this.points - opponent.points >= 2
   }
 
   isInAdvantage(opponent) {
-    return this.point > opponent.point && opponent.point >= Points.FORTY
+    return this.points > opponent.points && opponent.points >= Points.FORTY
   }
 }

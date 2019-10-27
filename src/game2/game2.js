@@ -38,15 +38,15 @@ export class TennisGame2 {
 
   isFifteenFifteenOrThirtyThirty() {
     return (
-      this.player1.point === this.player2.point &&
-      this.player1.point <= Points.THIRTY
+      this.player1.points === this.player2.points &&
+      this.player1.points <= Points.THIRTY
     )
   }
 
   isDeuce() {
     return (
-      this.player1.point === this.player2.point &&
-      this.player1.point > Points.THIRTY
+      this.player1.points === this.player2.points &&
+      this.player1.points > Points.THIRTY
     )
   }
 }
