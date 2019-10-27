@@ -53,13 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint || echo '\nlint failed, still proceeding...\n'"
     }
-  },
-  "lint-staged": {
-    "src/**/*.js": [
-      "npm run lint -- --fix",
-      "git add"
-    ]
   }
 }
