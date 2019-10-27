@@ -6,24 +6,28 @@ export class TennisGame3 {
     this.player2 = new Player(player2Name)
   }
 
-  get p1() {
-    return this.player1.winnings
-  }
-
   get p2() {
     return this.player2.winnings
   }
 
   getScore() {
     let s
-    if (this.p1 < 4 && this.p2 < 4 && this.p1 + this.p2 < 6) {
+    if (
+      this.player1.winnings < 4 &&
+      this.p2 < 4 &&
+      this.player1.winnings + this.p2 < 6
+    ) {
       const p = ['Love', 'Fifteen', 'Thirty', 'Forty']
-      s = p[this.p1]
-      return this.p1 == this.p2 ? `${s}-All` : `${s}-${p[this.p2]}`
+      s = p[this.player1.winnings]
+      return this.player1.winnings === this.p2
+        ? `${s}-All`
+        : `${s}-${p[this.p2]}`
     }
-    if (this.p1 == this.p2) return 'Deuce'
-    s = this.p1 > this.p2 ? this.player1.name : this.player2.name
-    return (this.p1 - this.p2) * (this.p1 - this.p2) == 1
+    if (this.player1.winnings === this.p2) return 'Deuce'
+    s = this.player1.winnings > this.p2 ? this.player1.name : this.player2.name
+    return (this.player1.winnings - this.p2) *
+      (this.player1.winnings - this.p2) ===
+      1
       ? `Advantage ${s}`
       : `Win for ${s}`
   }
