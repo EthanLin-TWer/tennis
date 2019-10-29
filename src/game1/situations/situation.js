@@ -6,5 +6,6 @@ export class Situation {
     this.opponent = opponent
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getScores() {}
 }
